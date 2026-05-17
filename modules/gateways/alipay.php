@@ -179,12 +179,62 @@ function alipay_link($params)
     $gatewayUrl = whmcs_alipay_gateway_url(!empty($params['sandbox']) && $params['sandbox'] === 'on');
     $iconUrl = rtrim($params['systemurl'], '/') . '/modules/gateways/alipay/logo-icon.png';
     $buttonLabel = whmcs_alipay_lang('pay_button', $params);
+    $buttonStyles = '<style>
+.prk-alipay-payment-form {
+    margin: 0;
+    width: 100%;
+}
+.prk-alipay-payment-button.btn {
+    align-items: center !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    gap: 0 !important;
+    height: 44px !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    padding: 0 14px !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    white-space: nowrap !important;
+    width: 100% !important;
+}
+.prk-alipay-payment-button__content {
+    align-items: center !important;
+    display: inline-flex !important;
+    gap: 8px !important;
+    height: 20px !important;
+    justify-content: center !important;
+    line-height: 20px !important;
+    margin: 0 auto !important;
+}
+.prk-alipay-payment-button__icon {
+    display: block !important;
+    flex: 0 0 18px !important;
+    height: 18px !important;
+    line-height: 0 !important;
+    margin: 0 !important;
+    object-fit: contain !important;
+    padding: 0 !important;
+    width: 18px !important;
+}
+.prk-alipay-payment-button__label {
+    display: block !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    line-height: 18px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+</style>';
 
-    return '<form method="post" accept-charset="UTF-8" action="' . htmlspecialchars($gatewayUrl, ENT_QUOTES, 'UTF-8') . '">' . "\n"
+    return $buttonStyles
+        . '<form class="prk-alipay-payment-form" method="post" accept-charset="UTF-8" action="' . htmlspecialchars($gatewayUrl, ENT_QUOTES, 'UTF-8') . '">' . "\n"
         . whmcs_alipay_render_hidden_inputs($requestParams)
-        . '<button type="submit" class="btn btn-primary">'
-        . '<img src="' . htmlspecialchars($iconUrl, ENT_QUOTES, 'UTF-8') . '" alt="" style="height:20px;width:20px;margin-right:6px;vertical-align:text-bottom;">'
-        . htmlspecialchars($buttonLabel, ENT_QUOTES, 'UTF-8')
+        . '<button type="submit" class="btn btn-primary prk-alipay-payment-button">'
+        . '<span class="prk-alipay-payment-button__content">'
+        . '<img class="prk-alipay-payment-button__icon" src="' . htmlspecialchars($iconUrl, ENT_QUOTES, 'UTF-8') . '" alt="">'
+        . '<span class="prk-alipay-payment-button__label">' . htmlspecialchars($buttonLabel, ENT_QUOTES, 'UTF-8') . '</span>'
+        . '</span>'
         . '</button>' . "\n"
         . '</form>';
 }

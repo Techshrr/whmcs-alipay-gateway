@@ -84,6 +84,14 @@ This display text does not control payment allocation or provisioning. WHMCS pro
 
 Default WHMCS `standard_cart` payment method radio lists do not automatically render gateway logos. The included `logo.png` is available for WHMCS gateway metadata, and `logo-icon.png` is used inside the invoice payment button.
 
+## Release Notes
+
+### 1.1.0
+
+- Added signed return handling so successful browser returns can refresh WHMCS invoice state more reliably.
+- Improved UTF-8 handling for Alipay display text.
+- Marked package metadata as MIT for open-source release.
+
 ## Disclaimer
 
 This is an independent WHMCS payment gateway module. It is not affiliated with, endorsed by, or sponsored by WHMCS or Alipay. WHMCS and Alipay trademarks belong to their respective owners.
