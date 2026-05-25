@@ -1,5 +1,8 @@
 # WHMCS PeakRack Alipay Gateway
 
+> Official repository: https://github.com/Techshrr/whmcs-peakrack-alipay
+> License: Apache License 2.0
+
 WHMCS Alipay payment gateway for `alipay.trade.page.pay`, with RSA2 signing, asynchronous callback handling, and WHMCS currency conversion to CNY.
 
 中文说明见 [README.zh-CN.md](README.zh-CN.md).
@@ -102,7 +105,7 @@ Default WHMCS `standard_cart` payment method radio lists do not automatically re
 
 - Added signed return handling so successful browser returns can refresh WHMCS invoice state more reliably.
 - Improved UTF-8 handling for Alipay display text.
-- Marked package metadata as MIT for open-source release.
+- Updated package metadata for Apache-2.0 open-source release.
 
 ### 1.1.1
 
@@ -129,4 +132,6 @@ This is an independent WHMCS payment gateway module. It is not affiliated with, 
 
 ## License
 
-MIT License. See [LICENSE](LICENSE).
+This project is licensed under the Apache License 2.0. See [LICENSE](LICENSE) for details.
+
+Additional project notices are available in [NOTICE](NOTICE).

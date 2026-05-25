@@ -1,5 +1,8 @@
 # WHMCS PeakRack 支付宝支付网关
 
+> 官方仓库：https://github.com/Techshrr/whmcs-peakrack-alipay
+> 许可证：Apache License 2.0
+
 用于 WHMCS 9.x 的支付宝电脑网站支付网关模块，支持 `alipay.trade.page.pay`、RSA2 签名、异步通知回调，以及 WHMCS 多货币转换为人民币支付。
 
 English documentation: [README.md](README.md)
@@ -144,4 +147,10 @@ WHMCS 默认 `standard_cart` 订单模板的支付方式选择列表只输出支
 
 ## 开源协议
 
-MIT License。详见 [LICENSE](LICENSE)。
+Apache License 2.0。详见 [LICENSE](LICENSE)。
+
+## 许可证
+
+本项目基于 Apache License 2.0 发布。完整许可证请查看 [LICENSE](LICENSE)。
+
+其他项目声明请查看 [NOTICE](NOTICE)。

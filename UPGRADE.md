@@ -33,4 +33,4 @@
 
 - Added signed return handling so successful browser returns can refresh WHMCS invoice state more reliably.
 - Improved UTF-8 handling for Alipay display text.
-- Marked package metadata as MIT for open-source release.
+- Updated package metadata for Apache-2.0 open-source release.
