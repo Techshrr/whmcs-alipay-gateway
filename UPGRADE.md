@@ -1,5 +1,13 @@
 # Upgrade Notes
 
+## 1.1.5
+
+- Successful callbacks are now applied to WHMCS invoices with the confirmed Alipay payment amount.
+- Client-facing payment messages support Hong Kong Traditional Chinese when WHMCS reports `zh-hk` or an equivalent Traditional Chinese locale.
+- The gateway configuration page now includes a GitHub shortcut and a browser-side update notice. No server-side migration is required for this admin display.
+- Existing App ID, keys, Seller ID, order prefix, timeout, sandbox, and amount-verification settings are preserved.
+- No database migration is required.
+
 ## 1.1.4
 
 - Added a visible `Admin Language` gateway setting so the language control appears even when WHMCS does not render custom `System` gateway fields.

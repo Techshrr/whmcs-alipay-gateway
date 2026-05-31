@@ -11,11 +11,11 @@ WHMCS Alipay payment gateway for `alipay.trade.page.pay`, with RSA2 signing, asy
 
 - Alipay PC website payment via `alipay.trade.page.pay`
 - RSA2 signing and notification signature verification
-- WHMCS invoice payment callback integration
+- WHMCS invoice payment callback integration with confirmed gateway amount application
 - CNY gateway amount verification for converted invoices
 - Supports WHMCS `Convert To For Processing = CNY`
 - Sectioned gateway configuration UI with a visible Admin Language selector and optional inline Chinese/English switch links
-- Chinese/English customer-facing button and error messages
+- English, Simplified Chinese, and Hong Kong Traditional Chinese customer-facing button and error messages
 - Gateway logo metadata and invoice payment button icon
 
 ## Requirements

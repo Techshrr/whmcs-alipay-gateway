@@ -72,7 +72,7 @@ function whmcs_alipay_admin_text(string $language, string $key): string
         'zh' => [
             'admin_title' => 'Alipay 支付网关配置',
             'admin_subtitle' => '用于支付宝开放平台电脑网站支付。支付网关配置页由 WHMCS 字段渲染；可使用“后台语言”下拉框保存切换，或点击旁边按钮临时切换。',
-            'version_badge' => '版本 1.1.4',
+            'version_badge' => '版本 1.1.5',
             'language_zh' => '中文',
             'language_en' => 'English',
             'admin_language' => '后台语言',
@@ -107,7 +107,7 @@ function whmcs_alipay_admin_text(string $language, string $key): string
         'en' => [
             'admin_title' => 'Alipay Gateway Configuration',
             'admin_subtitle' => 'Configure Alipay Open Platform PC website payment. WHMCS renders payment gateway settings as fields; use the Admin Language dropdown and save, or use the adjacent buttons for a temporary switch.',
-            'version_badge' => 'Version 1.1.4',
+            'version_badge' => 'Version 1.1.5',
             'language_zh' => '中文',
             'language_en' => 'English',
             'admin_language' => 'Admin Language',
@@ -158,16 +158,33 @@ function whmcs_alipay_admin_system(string $html): array
     ];
 }
 
+function whmcs_alipay_admin_github_icon(): string
+{
+    return '<svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14" focusable="false" style="display:block;fill:currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.64 7.64 0 0 1 8 3.86c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>';
+}
+
+function whmcs_alipay_admin_github_html(): string
+{
+    $icon = whmcs_alipay_admin_github_icon();
+    $linkStyle = 'display:inline-flex;align-items:center;justify-content:center;gap:5px;margin-left:6px;padding:3px 8px;border:1px solid #cfd8e3;border-radius:4px;text-decoration:none;font-size:12px;font-weight:700;background:#fff;color:#334155;vertical-align:middle;line-height:1.35;';
+    $updateStyle = 'display:none;align-items:center;justify-content:center;gap:5px;margin-left:6px;padding:3px 8px;border:1px solid #fedf89;border-radius:4px;text-decoration:none;font-size:12px;font-weight:700;background:#fffaeb;color:#b54708;vertical-align:middle;line-height:1.35;';
+
+    return '<a style="' . $linkStyle . '" href="https://github.com/Techshrr/whmcs-peakrack-alipay" target="_blank" rel="noopener noreferrer" title="GitHub repository">' . $icon . '<span>GitHub</span></a>'
+        . '<a style="' . $updateStyle . '" href="https://github.com/Techshrr/whmcs-peakrack-alipay/releases" target="_blank" rel="noopener noreferrer" data-prk-github-update data-prk-github-repo="Techshrr/whmcs-peakrack-alipay" data-prk-github-current="1.1.5" data-prk-github-label="New version {version}"></a>'
+        . '<script>(function(){if(window.PeakRackGithubUpdateCheck){window.PeakRackGithubUpdateCheck();return;}window.PeakRackGithubUpdateCheck=function(){var nodes=document.querySelectorAll("[data-prk-github-update]");if(!nodes.length||!window.fetch){return;}function normalize(v){return String(v||"").replace(/^v/i,"").replace(/[^0-9A-Za-z.\\-+]/g,"");}function compare(a,b){var aa=normalize(a).split(/[.\\-+]/),bb=normalize(b).split(/[.\\-+]/),len=Math.max(aa.length,bb.length);for(var i=0;i<len;i++){var av=aa[i]||"",bv=bb[i]||"";if(av===""&&bv!==""){return 1;}if(av!==""&&bv===""){return -1;}var an=/^\\d+$/.test(av),bn=/^\\d+$/.test(bv);if(an&&bn){var ai=parseInt(av,10),bi=parseInt(bv,10);if(ai!==bi){return ai>bi?1:-1;}}else if(av!==bv){return av>bv?1:-1;}}return 0;}function readCache(repo){try{var raw=localStorage.getItem("peakrack.github.update."+repo);if(!raw){return null;}var data=JSON.parse(raw);if(!data||!data.checkedAt||Date.now()-data.checkedAt>43200000){return null;}return data;}catch(e){return null;}}function writeCache(repo,data){try{data.checkedAt=Date.now();localStorage.setItem("peakrack.github.update."+repo,JSON.stringify(data));}catch(e){}}function fetchJson(url){var controller=window.AbortController?new AbortController():null;var timer=controller?window.setTimeout(function(){controller.abort();},2000):null;return fetch(url,{headers:{Accept:"application/vnd.github+json"},signal:controller?controller.signal:undefined}).then(function(resp){if(timer){window.clearTimeout(timer);}if(!resp.ok){throw new Error("http");}return resp.json();}).catch(function(err){if(timer){window.clearTimeout(timer);}throw err;});}function latest(repo){var base="https://api.github.com/repos/"+repo;return fetchJson(base+"/releases/latest").then(function(data){return{version:data.tag_name||"",url:data.html_url||("https://github.com/"+repo+"/releases")};}).catch(function(){return fetchJson(base+"/tags?per_page=1").then(function(tags){var tag=tags&&tags[0]?tags[0].name:"";return{version:tag,url:tag?("https://github.com/"+repo+"/releases/tag/"+encodeURIComponent(tag)):("https://github.com/"+repo+"/releases")};});});}function apply(node,info){var current=node.getAttribute("data-prk-github-current")||"";if(info&&info.version&&compare(info.version,current)>0){node.href=info.url||node.href;node.textContent=(node.getAttribute("data-prk-github-label")||"New version {version}").replace("{version}",info.version);node.style.display="inline-flex";}}Array.prototype.forEach.call(nodes,function(node){var repo=node.getAttribute("data-prk-github-repo")||"";if(!repo){return;}var cached=readCache(repo);if(cached){apply(node,cached);return;}latest(repo).then(function(info){writeCache(repo,info);apply(node,info);}).catch(function(){});});};window.PeakRackGithubUpdateCheck();})();</script>';
+}
+
 function whmcs_alipay_admin_language_links(string $language): string
 {
     $zhUrl = whmcs_alipay_admin_e(whmcs_alipay_admin_language_url('zh'));
     $enUrl = whmcs_alipay_admin_e(whmcs_alipay_admin_language_url('en'));
-    $base = 'display:inline-block;margin-left:6px;padding:3px 8px;border:1px solid #cfd8e3;border-radius:4px;text-decoration:none;font-size:12px;font-weight:700;';
+    $base = 'display:inline-flex;align-items:center;margin-left:6px;padding:3px 8px;border:1px solid #cfd8e3;border-radius:4px;text-decoration:none;font-size:12px;font-weight:700;vertical-align:middle;line-height:1.35;';
     $inactive = $base . 'background:#fff;color:#475569;';
     $active = $base . 'background:#2563eb;color:#fff;';
 
     return '<a style="' . ($language === 'zh' ? $active : $inactive) . '" href="' . $zhUrl . '">中文</a>'
-        . '<a style="' . ($language === 'en' ? $active : $inactive) . '" href="' . $enUrl . '">English</a>';
+        . '<a style="' . ($language === 'en' ? $active : $inactive) . '" href="' . $enUrl . '">English</a>'
+        . whmcs_alipay_admin_github_html();
 }
 
 function whmcs_alipay_admin_language_url(string $language): string
@@ -200,6 +217,9 @@ function whmcs_alipay_admin_intro(string $language): array
 .prk-gw-admin__desc{margin:0;color:#6b7280;font-size:12px;line-height:1.5}
 .prk-gw-admin__actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:flex-end}
 .prk-gw-admin__badge{display:inline-flex;align-items:center;border-radius:999px;padding:3px 9px;background:#eff8ff;color:#175cd3;border:1px solid #b2ddff;font-size:12px;font-weight:700;white-space:nowrap}
+.prk-gw-admin__link,.prk-gw-admin__update{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 9px;background:#fff;color:#334155;border:1px solid #cfd8e3;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap}
+.prk-gw-admin__link:hover,.prk-gw-admin__update:hover{text-decoration:none;color:#111827;background:#f8fafc}
+.prk-gw-admin__update{background:#fffaeb;color:#b54708;border-color:#fedf89}
 .prk-gw-lang{display:inline-flex;border:1px solid #cfd8e3;border-radius:6px;background:#fff;overflow:hidden}
 .prk-gw-lang a{display:inline-flex;align-items:center;padding:6px 9px;color:#475569;text-decoration:none;font-size:12px;font-weight:700}
 .prk-gw-lang a.active{background:#2563eb;color:#fff}

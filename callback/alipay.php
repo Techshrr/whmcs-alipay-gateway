@@ -177,7 +177,7 @@ logTransaction($gatewayModuleName, $safeLogData, $isSignedReturnPayment ? 'Succe
 addInvoicePayment(
     $invoiceId,
     $transactionId,
-    0,
+    $paymentAmount,
     0.00,
     $gatewayParams['paymentmethod']
 );

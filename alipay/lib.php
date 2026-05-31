@@ -23,7 +23,7 @@ function whmcs_alipay_gateway_url($sandbox)
         : 'https://openapi.alipay.com/gateway.do';
 }
 
-function whmcs_alipay_is_chinese_language(array $params = [])
+function whmcs_alipay_client_locale(array $params = []): string
 {
     $language = '';
 
@@ -39,11 +39,61 @@ function whmcs_alipay_is_chinese_language(array $params = [])
         $language = (string) $_SESSION['language'];
     }
 
-    $language = strtolower($language);
+    $language = strtolower(str_replace('_', '-', $language));
+
+    if (
+        strpos($language, 'chinese-hk') !== false
+        || strpos($language, 'zh-hk') !== false
+        || strpos($language, 'hongkong') !== false
+        || strpos($language, 'hong-kong') !== false
+        || strpos($language, 'hant') !== false
+        || strpos($language, 'traditional') !== false
+        || strpos($language, '繁體') !== false
+        || strpos($language, '繁体') !== false
+    ) {
+        return 'zh-hk';
+    }
 
     return strpos($language, 'chinese') !== false
         || strpos($language, 'zh') === 0
-        || strpos($language, 'cn') !== false;
+        || strpos($language, 'cn') !== false
+        ? 'zh'
+        : 'en';
+}
+
+function whmcs_alipay_is_chinese_language(array $params = [])
+{
+    return whmcs_alipay_client_locale($params) !== 'en';
+}
+
+function whmcs_alipay_traditionalize($text)
+{
+    $text = (string) $text;
+    if ($text === '') {
+        return '';
+    }
+
+    $text = strtr($text, [
+        '支付宝支付' => '支付寶支付',
+        '尚未完整配置' => '尚未完整配置',
+        '缺少' => '缺少',
+        '支付金额' => '支付金額',
+        '发票' => '帳單',
+        '设置' => '設定',
+        '请求签名失败' => '請求簽名失敗',
+        '使用支付宝支付' => '使用支付寶支付',
+        '支付网关' => '支付網關',
+        '电脑网站' => '電腦網站',
+        '用于' => '用於',
+        '请' => '請',
+    ]);
+
+    return strtr($text, [
+        '宝' => '寶', '额' => '額', '发' => '發', '设' => '設', '请' => '請',
+        '为' => '為', '扩' => '擴', '环' => '環', '启' => '啟', '用' => '用',
+        '签' => '簽', '败' => '敗', '币' => '幣', '转' => '轉', '网' => '網',
+        '关' => '關', '应' => '應', '于' => '於', '脑' => '腦',
+    ]);
 }
 
 function whmcs_alipay_lang($key, array $params = [], array $replace = [])
@@ -67,8 +117,11 @@ function whmcs_alipay_lang($key, array $params = [], array $replace = [])
         ],
     ];
 
-    $locale = whmcs_alipay_is_chinese_language($params) ? 'zh' : 'en';
-    $message = $messages[$locale][$key] ?? $messages['en'][$key] ?? $key;
+    $locale = whmcs_alipay_client_locale($params);
+    $message = $messages[$locale === 'zh-hk' ? 'zh' : $locale][$key] ?? $messages['en'][$key] ?? $key;
+    if ($locale === 'zh-hk') {
+        $message = whmcs_alipay_traditionalize($message);
+    }
 
     foreach ($replace as $name => $value) {
         $message = str_replace(':' . $name, (string) $value, $message);

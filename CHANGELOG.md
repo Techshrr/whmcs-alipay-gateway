@@ -4,6 +4,19 @@ All notable changes to this project are documented in this file.
 
 This project follows Semantic Versioning where practical.
 
+## [1.1.5] - 2026-06-01
+
+### Fixed
+
+- Applied successful Alipay callbacks to WHMCS invoices with the confirmed gateway payment amount.
+- Reduced reliance on WHMCS balance defaults when recording validated payments.
+- Placed the GitHub shortcut in the visible gateway settings help row and replaced icon-font markup with inline SVG.
+
+### Added
+
+- Added Hong Kong Traditional Chinese client-area payment messages when the WHMCS language is detected as `zh-hk` or an equivalent Traditional Chinese locale.
+- Added a WHMCS gateway-configuration GitHub shortcut and browser-side update notice for published GitHub releases or tags.
+
 ## [1.1.4] - 2026-05-26
 
 ### Added
